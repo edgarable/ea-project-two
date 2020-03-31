@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @student.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @student.email %>
+</p>
+
+<strong>Courses:</strong>
+<%= link_to 'Assign Course', assign_course_student_path(@student) %>
+<% if @student.courses.size == 0 %>
+<p>No courses assigned to this student!</p>
+<% else %>
+<table>
+    <thead>
+      <tr>
+        <th>Course Name</th>
+        <th colspan="1"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @student.courses.each do |course| %>
+        <tr>
+          <td><%= course.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to 'Edit', edit_student_path(@student) %> |
+<%= link_to 'Back', students_path %>
